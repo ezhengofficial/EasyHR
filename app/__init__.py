@@ -75,13 +75,8 @@ def signup():
                 password = str(password)
                 # Checking to see if password follows proper length
                 if len(password) > 7 and len(password) <= 50:
-                    r = http.request(
-                        'GET', "http://dog.ceo/api/breeds/image/random")
-                    pfpurl = ""
-                    if r.status == 200:
-                        pfpurl = json.loads(r.data).get('message')
-                    c.execute("""INSERT INTO users (username,hash,pfp) VALUES (?,?,?)""",
-                              (request.form['username'], password, pfpurl,))
+                    c.execute("""INSERT INTO users (username,hash) VALUES (?,?)""",
+                              (request.form['username'], password))
                     db.commit()
                     c.execute(
                         """SELECT username FROM users WHERE username = ?;""", (request.form['username'],))
