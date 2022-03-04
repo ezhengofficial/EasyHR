@@ -1,6 +1,6 @@
 # EasyHR
 
-Edwin Zheng (PM) -  
-Zhao Yu Lin -   
-Han Zhang -   
-Raymond Yeung -   
+Edwin Zheng (PM) - HTML + CSS   
+Zhao Yu Lin - JavaScript  
+Han Zhang - Python Game Code   
+Raymond Yeung - Flask + Database  
