@@ -38,66 +38,6 @@ def isAlphaNum(string):
 def index():
     return render_template("index.html", user=session.get('username'))
 
-
-# Play
-@app.route("/play", methods=['GET', 'POST'])
-def play():
-    if 'username' in session:
-        if 'game' not in session:
-            checkers.start_game(session)
-            e1 = ""
-            r = http.request('GET', "https://grixisutils.site/emojapi/")
-            if r.status == 200:
-                e1 = json.loads(r.data)["emoji"]
-            else:
-                print(str(r.__dict__))
-            # Do again for other player
-            e2 = ""
-            r = http.request('GET', "https://grixisutils.site/emojapi/")
-            if r.status == 200:
-                e2 = json.loads(r.data)["emoji"]
-            else:
-                print(str(r.__dict__))
-            checkers.set_emojis(session, e1, e2)
-        if request.method == 'GET':
-            db = sqlite3.connect(MAIN_DB)
-            c = db.cursor()
-            # Obtaining data from database
-            c.execute("""SELECT pfp FROM users WHERE username = ?;""",
-                  (session.get("username"),))
-            profile = c.fetchone()[0]
-            print(*session['game']['board'], sep="\n")
-            return render_template("play.html", user=session.get('username'), game=session['game'], turn=session['game']['turn']+1, pfp=profile)
-        else:  # POST
-            print(str(request.form))
-            if 'pieces[]' in request.form:
-                pieces = [s.split("_")
-                          for s in request.form.getlist('pieces[]')]
-                if len(pieces) < 2:
-                    return redirect("/play")
-                for i in range(len(pieces)):
-                    pieces[i] = [int(j) for j in pieces[i]]
-                if session['game']['board'][pieces[1][0]][pieces[1][1]] != 0 and session['game']['board'][pieces[1][0]][pieces[1][1]] % 2 == session['game']['turn']:
-                    # move(x1,y1,x2,y2)
-                    moverval = checkers.move(
-                        session, pieces[1][1], pieces[1][0], pieces[0][1], pieces[0][0])
-                    if type(moverval) != int:
-                        session['game'] = moverval
-                    else:
-                        print(checkers.geterrorstring(moverval))
-                        return render_template("play.html", user=session.get('username'), game=session['game'], turn=session['game']['turn']+1, error=checkers.geterrorstring(moverval))
-                else:
-                    moverval = checkers.move(
-                        session, pieces[0][1], pieces[0][0], pieces[1][1], pieces[1][0])
-                    if type(moverval) != int:
-                        session['game'] = moverval
-                    else:
-                        print(checkers.geterrorstring(moverval))
-                        return render_template("play.html", user=session.get('username'), game=session['game'], turn=session['game']['turn']+1, error=checkers.geterrorstring(moverval))
-            return redirect("/play")
-    return redirect("/")
-
-
 # Signup function
 @app.route("/signup", methods=['GET', 'POST'])
 def signup():
