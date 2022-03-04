@@ -131,8 +131,8 @@ def login():
 # Logout function
 @app.route("/logout")
 def logout():
-    """ 
-        Logouts user 
+    """
+        Logouts user
     """
     session.pop('username', default=None)
     return redirect("/")
