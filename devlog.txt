@@ -1,0 +1,8 @@
+Easy HR - Edwin Zheng, Zhao Yu Lin, Han Zhang, Raymond Yeung
+SoftDev
+P02: 
+2022-03-08
+
+hanZ -- 2022-03-08 08:13
+
+Added devlog and also changed README to provide role of each teammate and brief summary.
