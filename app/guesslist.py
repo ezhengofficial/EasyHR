@@ -1,5 +1,4 @@
-export const GUESSLIST =
-[
+guesslist = [
     "aahed",
     "aalii",
     "aargh",
