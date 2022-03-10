@@ -1,8 +1,20 @@
 Easy HR - Edwin Zheng, Zhao Yu Lin, Han Zhang, Raymond Yeung
 SoftDev
-P02: 
+P02:
 2022-03-08
 
 hanZ -- 2022-03-08 08:13
 
 Added devlog and also changed README to provide role of each teammate and brief summary.
+
+raymondY -- 2022-03-09 08:22
+
+-added db.py
+-renamed the calling of the database in login.py
+
+hanZ -- 2022-03-09 08:38
+
+Worked on Wordle code.
+
+raymondY -- 2022--03-10 08:22
+-connected python modules with blueprint
