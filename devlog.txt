@@ -15,3 +15,7 @@ raymondY -- 2022-03-09 08:22
 hanZ -- 2022-03-09 08:38
 
 Worked on Wordle code.
+
+hanZ -- 2022-03-09 08:38
+
+Added launch codes and continued wordle code.
