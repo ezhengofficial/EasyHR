@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, request, session
+from flask import Flask, render_template, redirect, request, session, g, Blueprint
 import json
 import os
 import urllib3
@@ -6,9 +6,7 @@ import sqlite3
 import time
 from db import get_db
 
-
-d = get_db()
-c = d.cursor()
+bp = Blueprint('login', __name__)
 
 
 def isAlphaNum(string):
@@ -23,12 +21,12 @@ def isAlphaNum(string):
 
 
 # Home page
-@app.route("/")
+@bp.route("/")
 def index():
     return render_template("index.html", user=session.get('username'))
 
 # Signup function
-@app.route("/signup", methods=['GET', 'POST'])
+@bp.route("/signup", methods=['GET', 'POST'])
 def signup():
     """
         If method = GET, render page to new username & password
@@ -87,7 +85,7 @@ def signup():
         return render_template("login.html", action="/signup", name="Sign Up")
 
 
-@app.route("/login", methods=['GET', 'POST'])
+@bp.route("/login", methods=['GET', 'POST'])
 def login():
     """
         If method = GET, render page to enter login info
@@ -118,7 +116,7 @@ def login():
 
 
 # Logout function
-@app.route("/logout")
+@bp.route("/logout")
 def logout():
     """
         Logouts user
