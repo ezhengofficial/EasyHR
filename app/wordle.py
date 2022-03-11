@@ -10,17 +10,15 @@ word = ''
 #Checks User Guesses
 def check(guess): 
     if guess in guesslist:
-        result = []
         for i in range(len(guess)):
             if guess[i] == word[i]:
-                result.append('green')
+                session['game']['colors'].append('green')
             elif guess[i] in word:
-                result.append('yellow')
+                session['game']['colors'].append('yellow')
             else:
-                result.append('gray')
-        return result
-    else:
-        return ("Not a valid word")
+                session['game']['colors'].append('gray')
+        return True
+    return False
 
 #Creates a new Worlde
 def new_word():
@@ -28,16 +26,36 @@ def new_word():
         new =  str(random.choice(wordlist))
     word = new
 
-#Play
-def play():
+def new_game(session):
+    if 'game' in session:
+        del session['game']
+        return True
+    return False
+
+
+
+if __name__ == "__main__":
+    session = dict()
+    session['game']['guesses'] = []
+    session['game']['colors'] = []
+    session['game']['attempts'] = 0
+
     if lastday != date.today():
         new_word()
-        attempt = 0
         lastday = date.today()
     
-    while (attempt < 6):
-        pass
+    while True:
+        
+        while (session['game']['attempts'] < 6):
 
-    if attempt == 6:
-        return ('The word was: {word}. Try again tomorrow!')
 
+            inp = input("").lower()
+            inp = inp.rsplit()
+
+            if len(inp) == 5 & check(inp):
+                session['game']['attempts'] += 1
+            else:
+                print('Invalid Word')
+
+        if session['game']['attempts'] == 6:
+            print ('The word was: {word}. Try again tomorrow!')
