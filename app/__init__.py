@@ -35,7 +35,13 @@ with app.app_context():
 @app.route("/")
 def home():
     return render_template("home.html")
+@app.route("/leaderboard")
+def leaderboard():
+    return render_template("leaderboard.html")
 
+@app.route("/login")
+def login():
+    return render_template("login.html")
 
 if __name__ == "__main__":
     app.debug = True
