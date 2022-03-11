@@ -4,9 +4,9 @@ import sqlite3
 DB_FILE="databse.db"
 
 create_users = '''CREATE TABLE IF NOT EXISTS USERS(
-                ID INTEGER PRIMARY KEY
+                ID INTEGER PRIMARY KEY,
                 USERNAME TEXT UNIQUE,
-                PASSWORD TEXT,,
+                PASSWORD TEXT,
                 USERFILE TEXT)'''
 
 
