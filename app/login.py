@@ -23,7 +23,7 @@ def isAlphaNum(string):
 # Home page
 @bp.route("/")
 def index():
-    return render_template("index.html", user=session.get('username'))
+    return render_template("home.html", user=session.get('username'))
 
 # Signup function
 @bp.route("/signup", methods=['GET', 'POST'])
@@ -93,7 +93,7 @@ def login():
     """
     if request.method == "POST":
         if 'username' in session:
-            return render_template("index.html", user=session.get('username'), message="Already logged in!")
+            return render_template("home.html", user=session.get('username'), message="Already logged in!")
         if 'username' in request.form and 'password' in request.form:
             d = get_db()
             c = d.cursor()
