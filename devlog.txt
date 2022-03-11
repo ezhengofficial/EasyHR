@@ -16,11 +16,12 @@ hanZ -- 2022-03-09 08:38
 
 Worked on Wordle code.
 
-<<<<<<< HEAD
+raymondY -- 2022--03-10 08:22
+
+-connected python modules with blueprint
+
 hanZ -- 2022-03-09 08:38
 
 Added launch codes and continued wordle code.
-=======
-raymondY -- 2022--03-10 08:22
--connected python modules with blueprint
->>>>>>> 4225e7cd801896f164264a3c96b22e0354b886a7
+
+
