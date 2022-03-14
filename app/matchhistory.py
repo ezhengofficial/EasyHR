@@ -15,12 +15,25 @@ def record():
         userfile.write(date.today().strftime("%m/%d/%y"), "\n")
         for i in range(len):
             userfile.write(session['guesses'][i], "|")
+        userfile.write("\n")
+
 
 @bp.route("/history", methods=['GET', 'POST'])
 def getHistory():
+    history = []
     userpath = "userfiles/%s.txt" % session['username']
     with open (userpath, "r+") as userfile:
         lines = userfile.readlines()
         for line in lines:
             if "/" in lines:
-                
+                date_history = []
+                date_history.append(line)
+            else:
+                len = length(line)
+                word = ''
+                for i in range(0, len, 2):
+                    word += line[i]
+                date_history.append(line)
+            if lines == "\n":
+                history.append(date_history)
+    return render_template("history.html", matches=history)
