@@ -38,3 +38,6 @@ Continued working on game code.
 zhaoL --2022-03-11 8:38
 -html templates
 -html filepaths
+
+zhaoL --2022-03-14 8:40
+-html and js grids
