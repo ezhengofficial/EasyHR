@@ -5,7 +5,8 @@ import urllib3
 import sqlite3
 import time
 import db
-import login
+from login import *
+import wordle
 
 def create_app():
     app = Flask(__name__)
@@ -42,6 +43,15 @@ def leaderboard():
 @app.route("/login")
 def login():
     return render_template("login.html")
+
+@app.route("/play")
+def play():
+    if 'username' in session:
+        if 'game' not in session:
+            wordle.new_game(session)
+        if request.method == 'GET':
+            
+
 
 if __name__ == "__main__":
     app.debug = True

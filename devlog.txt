@@ -43,3 +43,7 @@ zhaoL --2022-03-11 8:38
 hanZ -- 2022-03-12 11:46
 
 Updated design doc
+
+hanZ -- 2022-03-14 08:38
+
+Worked on Wordle code.
