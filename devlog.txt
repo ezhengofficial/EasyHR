@@ -44,6 +44,10 @@ hanZ -- 2022-03-12 11:46
 
 Updated design doc
 
+raymondY -- 2022-03-14 08:29
+
+finished match history (not tested)
+
 hanZ -- 2022-03-14 08:38
 
 Worked on Wordle code.
