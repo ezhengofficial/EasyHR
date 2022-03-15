@@ -5,7 +5,8 @@ import urllib3
 import sqlite3
 import time
 import db
-from login import *
+import auth
+import matchhistory
 from wordle import *
 
 def create_app():
@@ -25,9 +26,9 @@ def create_app():
 
 app = create_app()
 
-# app.register_blueprint(login.bp)
+app.register_blueprint(auth.bp)
 
-# app.register_blueprint(matchhistory.bp)
+app.register_blueprint(matchhistory.bp)
 
 
 with app.app_context():
