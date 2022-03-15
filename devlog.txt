@@ -41,8 +41,14 @@ zhaoL --2022-03-11 8:38
 -html filepaths
 
 zhaoL --2022-03-14 8:40
+
 -html and js grids
 
 raymondY -- 2022-03-15 08:32
+
 fixed blueprints
 fixed matchhistory
+
+hanZ -- 2022-03-15 08:34
+
+fixed some routes and improved game code
