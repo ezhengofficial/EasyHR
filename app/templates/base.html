@@ -57,22 +57,24 @@
         }
       }
       #grid-container {
-        position: relative;
+        position: absolute;
       	top: 30px;
-      	outline:2px solid #000;
+        bottom: 30px;
+        left: 650px;
+      	outline:2px solid #255;
       	font-size: 0;
       	margin:auto;
-        height:960px;
-	width:960px;
-	padding: 0;
-	border: none;
+        height:500px;
+      	width:500px;
+      	padding: 0;
+      	border: none;
+        border-color: coral;
 }
       .grid {
       margin:0;
       padding:0;
       border:none;
-      outline:1px solid #000;
-      display:inline-block;
+      outline:1px solid #255;
       }
 
     </style>
@@ -96,9 +98,7 @@
   <main class="px-3">
     <center><button class="newGrid">New Grid</button></center>
 
-    <div id="grid-container">
-
-    </div
+    <div id="grid-container"></div
 
   </main>
 
