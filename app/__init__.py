@@ -25,9 +25,9 @@ def create_app():
 
 app = create_app()
 
-app.register_blueprint(login.bp)
+# app.register_blueprint(login.bp)
 
-app.register_blueprint(matchhistory.bp)
+# app.register_blueprint(matchhistory.bp)
 
 
 with app.app_context():

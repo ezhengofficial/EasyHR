@@ -13,7 +13,45 @@
       <button type="button" class="btn-close" data-dismiss="toast" aria-label="Close"></button>
     </div>
     <div class="toast-body">
-      Hello, world! This is a toast message.
+      <div class="instructions">
+        <p>Guess the <strong>WORDLE</strong> in six tries.</p>
+        <p>Each guess must be a valid five-letter word. Hit the enter button to submit.</p>
+        <p>After each guess, the color of the tiles will change to show how close your guess was to the word.</p>
+        <div class="examples">
+          <p><strong>Examples</strong></p>
+          <div class="example">
+            <div class="row">
+              <game-tile letter="w" evaluation="correct" reveal=""></game-tile>
+              <game-tile letter="e"></game-tile>
+              <game-tile letter="a"></game-tile>
+              <game-tile letter="r"></game-tile>
+              <game-tile letter="y"></game-tile>
+            </div>
+            <p>The letter <strong>W</strong> is in the word and in the correct spot.</p>
+          </div>
+          <div class="example">
+            <div class="row">
+              <game-tile letter="p"></game-tile>
+              <game-tile letter="i" evaluation="present" reveal=""></game-tile>
+              <game-tile letter="l"></game-tile>
+              <game-tile letter="l"></game-tile>
+              <game-tile letter="s"></game-tile>
+            </div>
+            <p>The letter <strong>I</strong> is in the word but in the wrong spot.</p>
+          </div>
+          <div class="example">
+            <div class="row">
+              <game-tile letter="v"></game-tile>
+              <game-tile letter="a"></game-tile>
+              <game-tile letter="g"></game-tile>
+              <game-tile letter="u" evaluation="absent" reveal=""></game-tile>
+              <game-tile letter="e"></game-tile>
+            </div>
+            <p>The letter <strong>U</strong> is not in the word in any spot.</p>
+          </div>
+        </div>
+        <p><strong>A new WORDLE will be available each day!<strong></strong></strong></p><strong><strong>
+      </strong></strong></div>
     </div>
   </div>
 </div>
