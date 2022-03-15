@@ -2,7 +2,7 @@ from guesslist import guesslist
 from wordlist import wordlist 
 import random
 from datetime import date
-from login import *
+from auth import *
 
 
 lastday = ''
@@ -10,18 +10,24 @@ word = ''
 
 #Checks User Guesses
 def check(guess): 
-    if guess in guesslist:
-        session['game']['guesses'].append(guess)
-        session['game']['colors'].append([])
-        l = len(session['game']['colors']) - 1
-        for i in range(len(guess)):
-            if guess[i] == word[i]:
-                session['game']['colors'][l].append('green')
-            elif guess[i] in word:
-                session['game']['colors'][l].append('yellow')
-            else:
-                session['game']['colors'][l].append('gray')
-        return True
+    if len(guess) == 5:
+        if guess in guesslist:
+            session['game']['guesses'].append(guess)
+            session['game']['colors'].append([])
+            l = len(session['game']['colors']) - 1
+            for i in range(len(guess)):
+                if guess[i] == word[i]:
+                    session['game']['colors'][l].append('green')
+                elif guess[i] in word:
+                    session['game']['colors'][l].append('yellow')
+                else:
+                    session['game']['colors'][l].append('gray')
+            return True
+        else:
+            print('Not a Word')
+    else:
+        print('Word must be 5 letters long')
+        
     return False
 
 #Creates a new Worlde
@@ -39,30 +45,31 @@ def new_game(session):
     session = dict()
     session['game']['guesses'] = []
     session['game']['colors'] = []
-    session['game']['attempts'] = 0
         
 if __name__ == "__main__":    
     if lastday != date.today():
         new_word()
-        new_game()
+        new_game(session)
         lastday = date.today()
     
     if 'game' not in session:
-        new_game()
+        new_game(session)
 
     while True:
         for i in range (len(session['game']['guesses'])):
             print(session['game']['guesses'][i])
             print(session['game']['colors'[i]])
 
-        while (session['game']['attempts'] < 6):
+        while (len(session['game']['guesses']) < 6):
             inp = input("").lower()
             inp = inp.rsplit()
 
             if len(inp) == 5 & check(inp):
                 session['game']['attempts'] += 1
+            elif len(inp) != 5:
+                print('Word must be 5 letters long')
             else:
-                print('Invalid Word')
+                print('Not a Word')
 
         if session['game']['attempts'] == 6:
             print ('The word was: {word}. Try again tomorrow!')
