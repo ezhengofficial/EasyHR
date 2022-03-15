@@ -11,29 +11,36 @@ def record():
     userpath = "userfiles/%s.txt" % session['username']
     #session['guesses'] is a list of words in the form of :c1r2a0n1e2; 0 -> gray, 1 -> yellow, 2 -> green
     with open (userpath, "r+") as userfile:
-        len = session['guesses'].length()
+        len = session['game']['guesses'].length()
         userfile.write(date.today().strftime("%m/%d/%y"), "\n")
         for i in range(len):
-            userfile.write(session['guesses'][i], "|")
+            userfile.write(session['game']['guesses'][i], "|")
+        for i in range(len):
+            userfile.write(session['game']['colors'][i], ",")
         userfile.write("\n")
 
 
 @bp.route("/history", methods=['GET', 'POST'])
 def getHistory():
     history = []
+    chistory = []
     userpath = "userfiles/%s.txt" % session['username']
     with open (userpath, "r+") as userfile:
         lines = userfile.readlines()
         for line in lines:
-            if "/" in lines:
+            if "/" in line:
                 date_history = []
+                c = []
                 date_history.append(line)
-            else:
-                len = length(line)
-                word = ''
-                for i in range(0, len, 2):
-                    word += line[i]
-                date_history.append(line)
-            if lines == "\n":
+            if "|" in line:
+                words = line.split('|')
+                for word in words:
+                    date_history.append(word)
+            if "," in line:
+                colors = line.split(',')
+                for color in colors:
+                    c.append(colors)
+            if line == "\n":
+                chistory.append(c)
                 history.append(date_history)
-    return render_template("history.html", matches=history)
+    return render_template("history.html", matches=history, guesscolors=chistory)
