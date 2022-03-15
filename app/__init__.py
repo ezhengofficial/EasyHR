@@ -6,7 +6,7 @@ import sqlite3
 import time
 import db
 from login import *
-import wordle
+from wordle import *
 
 def create_app():
     app = Flask(__name__)
@@ -52,8 +52,11 @@ def play():
         if 'game' not in session:
             wordle.new_game(session)
         if request.method == 'GET':
-            
-
+            print(session['game']['guesses'])
+        else:       #POST
+            print(str(request.form))
+            if check(request.form):
+                pass
 
 if __name__ == "__main__":
     app.debug = True
