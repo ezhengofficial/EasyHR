@@ -4,6 +4,7 @@
 <h3 class="float-md-start example2">how2</h3>
 <button type="button" class="btn btn-primary" id="liveToastBtn">Show live toast</button>
 
+
 <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
   <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-autohide="false">
     <div class="toast-header" style="background:#121213">
@@ -72,4 +73,12 @@ if (toastTrigger) {
   })
 }
 </script>
+{% endblock %}
+{% block grid %}
+<main class="px-3">
+  <center><button class="newGrid">New Grid</button></center>
+
+  <div id="grid-container"></div
+
+</main>
 {% endblock %}

@@ -73,7 +73,7 @@
 
     <!-- Custom styles for this template -->
     <link href="cover.css" rel="stylesheet">
-    <script src = "../static/js/boxes.js"></script>
+    <script src = "./static/js/boxes.js"></script>
 
   </head>
   <body class="d-flex h-100 text-center text-white bg-dark">
@@ -86,13 +86,9 @@
     </div>
   </header>
 
-  <main class="px-3">
-    <center><button class="newGrid">New Grid</button></center>
 
-    <div id="grid-container"></div
-
-  </main>
-
+{%block grid%}
+{% endblock %}
 
 {% block js %}
 {% endblock %}
