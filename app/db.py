@@ -1,13 +1,13 @@
 from flask import g
 import sqlite3
 
-DB_FILE="databse.db"
+DB_FILE="database.db"
 
 create_users = '''CREATE TABLE IF NOT EXISTS USERS(
                 ID INTEGER PRIMARY KEY,
-                USERNAME TEXT UNIQUE,
-                PASSWORD TEXT,
-                USERFILE TEXT)'''
+                username TEXT UNIQUE,
+                hash TEXT,
+                userfile TEXT)'''
 
 
 def get_db():

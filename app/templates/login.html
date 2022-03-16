@@ -3,4 +3,12 @@
 <h3 class="float-md-start mb-0">Wordle Login</h3>
 <nav class="nav nav-masthead justify-content-center float-md-end">
         <a class="nav-link active" aria-current="page" href="/">Home</a>
+<p>
+  <form action = "/login" method="POST">
+    <input name = "username" type="text" >
+    <input name="password" type="password">
+    <button type="submit">Login</button>
+    <br>
+    <a href="/register">Don't have an account? Register now</a>
+  </form>
 {% endblock %}
