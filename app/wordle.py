@@ -2,8 +2,6 @@ from guesslist import guesslist
 from wordlist import wordlist 
 import random
 from datetime import date
-from auth import *
-
 
 lastday = ''
 word = ''
@@ -30,7 +28,7 @@ def check(guess):
         
     return False
 
-#Creates a new Worlde
+#Creates a new Wordle
 def new_word():
     new =  str(random.choice(wordlist))
     global word
@@ -38,6 +36,7 @@ def new_word():
         new =  str(random.choice(wordlist))
     word = new
 
+#New Game
 def new_game(session):
     if 'game' in session:
         del session['game']
