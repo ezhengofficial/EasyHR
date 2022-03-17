@@ -13,6 +13,7 @@ def check(guess):
     if len(guess) == 5:
         if guess == word:
             print('You Win!')
+            record()
             return True
         elif guess in guesslist:
             session['game']['guesses'].append(guess)
@@ -76,4 +77,5 @@ if __name__ == "__main__":
                 print('Not a Word')
 
         if session['game']['attempts'] == 6:
+            record()
             print ('The word was: {word}. Try again tomorrow!')
