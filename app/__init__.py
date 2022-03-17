@@ -5,9 +5,9 @@ import urllib3
 import sqlite3
 import time
 import db
-# import auth
+import auth
 import matchhistory
-# from wordle import *
+from wordle import *
 
 def create_app():
     app = Flask(__name__)
@@ -26,9 +26,9 @@ def create_app():
 
 app = create_app()
 
-# app.register_blueprint(auth.bp)
-#
-# app.register_blueprint(matchhistory.bp)
+app.register_blueprint(auth.bp)
+
+app.register_blueprint(matchhistory.bp)
 
 
 with app.app_context():
