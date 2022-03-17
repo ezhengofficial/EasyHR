@@ -2,14 +2,19 @@ from guesslist import guesslist
 from wordlist import wordlist 
 import random
 from datetime import date
+from matchhistory import *
 
 lastday = ''
 word = ''
 
 #Checks User Guesses
 def check(guess): 
+    global word
     if len(guess) == 5:
-        if guess in guesslist:
+        if guess == word:
+            print('You Win!')
+            return True
+        elif guess in guesslist:
             session['game']['guesses'].append(guess)
             session['game']['colors'].append([])
             l = len(session['game']['colors']) - 1
