@@ -79,6 +79,24 @@ function clicky(letter) {
   }
 }
 
+document.addEventListener("keyup", (e) =>{
+  let letter = String(e.key).toUpperCase();
+  console.log("letter of keypressed " + letter)
+  console.log("true?" + letter==="S")
+  if(letter==="DELETE" || letter === "BACKSPACE"){
+    deleteLetter();
+    console.log("equals del");
+    return
+  }else if(letter==="ENTER"){
+    nextRow();
+    console.log("equals enter");
+    return
+  }else{
+    addLetter(letter)
+    console.log("added letter");
+  }
+})
+
 const addLetter = (letter) => {
   if (currentTile < 5) {
     // console.log(currentRow + " " + currentTile);
@@ -90,16 +108,21 @@ const addLetter = (letter) => {
 };
 
 const nextRow = () => {
-  guess = "";
+  input = "";
   if (currentTile != 5) {
     console.log("not allwoed");
   }
   if (currentTile == 5) {
     for (var i = 0; i < 5; i++) {
       tile = document.getElementById("row#" + currentRow + "tile#" + i);
-      guess = guess.concat("", tile.textContent);
+      input = input.concat("", tile.textContent);
     }
-    console.log("GUESS: " + guess);
+    console.log("GUESS: " + input);
+
+    const request = new XMLHttpRequest()
+    request.open('POST', '/')
+    request.send()
+
     currentRow++;
     currentTile = 0;
   }
