@@ -60,8 +60,13 @@
 </div>
 <nav class="nav nav-masthead justify-content-center float-md-end">
     <a class="nav-link active" aria-current="page" href="/leaderboard">Leaderboard</a>
+    {% if user %}
+    <a class="nav-link">{{user}}<a/>
+    <a class="nav-link" href="/logout">Log Out</a>
+    {% else %}
     <a class="nav-link" href="/login">Log in</a>
     <a class="nav-link" href="/login">Sign up</a>
+    {% endif %}
 </nav>
 {% endblock %}
 
