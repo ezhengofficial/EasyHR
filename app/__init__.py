@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, request, session, g, Blueprint
+from flask import Flask, render_template, redirect, request, session, g, Blueprint, jsonify
 import json
 import os
 import urllib3
@@ -7,7 +7,7 @@ import time
 import db
 import auth
 import matchhistory
-from wordle import *
+import wordle
 
 def create_app():
     app = Flask(__name__)
@@ -52,12 +52,11 @@ def play():
     if 'username' in session:
         if 'game' not in session:
             wordle.new_game(session)
-        if request.method == 'GET':
-            print(session['game']['guesses'])
-        else:       #POST
-            print(str(request.form))
-            if check(request.form):
-                pass
+        if request.method == 'POST':
+            input = json.loads(input)
+            input = json.dumps(input)
+            wordle.guess(input)
+            return jsonify(session['game'])
 
 if __name__ == "__main__":
     app.debug = True
