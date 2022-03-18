@@ -36,16 +36,9 @@ with app.app_context():
     d = db.get_db()
     c = d.cursor()
 
-@app.route("/")
-def home():
-    return render_template("home.html")
 @app.route("/leaderboard")
 def leaderboard():
     return render_template("leaderboard.html")
-
-@app.route("/login")
-def login():
-    return render_template("login.html")
 
 @app.route("/play")
 def play():
