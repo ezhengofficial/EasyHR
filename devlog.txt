@@ -67,3 +67,7 @@ zhaoL --2020-03-17 23:30
 
 zhaoL --2020-03-18 08:36
 -wordle keyboard inputs
+
+hanZ -- 2022-03-18 08:39
+
+worked on connecting js and flask variables
