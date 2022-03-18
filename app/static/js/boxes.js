@@ -114,6 +114,11 @@ const nextRow = () => {
       input = input.concat("", tile.textContent);
     }
     console.log("GUESS: " + input);
+
+    const request = new XMLHttpRequest()
+    request.open('POST', '/')
+    request.send()
+
     currentRow++;
     currentTile = 0;
   }

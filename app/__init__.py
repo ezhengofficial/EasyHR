@@ -38,7 +38,11 @@ with app.app_context():
 
 @app.route("/")
 def home():
+    input = json.loads(input)
+    input = json.dumps(input)
+    wordle.guess(input)
     return render_template("home.html")
+
 @app.route("/leaderboard")
 def leaderboard():
     return render_template("leaderboard.html")
@@ -56,6 +60,7 @@ def play():
             input = json.loads(input)
             input = json.dumps(input)
             wordle.guess(input)
+            print(input)
             return jsonify(session['game'])
 
 if __name__ == "__main__":
