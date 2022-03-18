@@ -80,16 +80,20 @@ function clicky(letter) {
 }
 
 document.addEventListener("keyup", (e) =>{
-  let letter = String(e.key);
+  let letter = String(e.key).toUpperCase();
   console.log("letter of keypressed " + letter)
-  if(letter.equals("DELETE")){
+  console.log("true?" + letter==="S")
+  if(letter==="DELETE" || letter === "BACKSPACE"){
     deleteLetter();
+    console.log("equals del");
     return
-  }else if(letter = "ENTER"){
+  }else if(letter==="ENTER"){
     nextRow();
+    console.log("equals enter");
     return
   }else{
     addLetter(letter)
+    console.log("added letter");
   }
 })
 
