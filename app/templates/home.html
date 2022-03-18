@@ -1,5 +1,20 @@
 {% extends "base.html" %}
 {% block content %}
+
+<ul class="nav">
+    <li class="nav-item">
+      <a class="nav-link active" aria-current="page" href="#">Active</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/login">Login</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/login">SignUp</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link">Disabled</a>
+    </li>
+  </ul>
 <h3 class="float-md-start">Wordle</h3>
 <h3 class="float-md-start example2">how2</h3>
 <button type="button" class="btn btn-primary" id="liveToastBtn">Show live toast</button>
