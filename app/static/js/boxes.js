@@ -104,16 +104,16 @@ const addLetter = (letter) => {
 };
 
 const nextRow = () => {
-  guess = "";
+  input = "";
   if (currentTile != 5) {
     console.log("not allwoed");
   }
   if (currentTile == 5) {
     for (var i = 0; i < 5; i++) {
       tile = document.getElementById("row#" + currentRow + "tile#" + i);
-      guess = guess.concat("", tile.textContent);
+      input = input.concat("", tile.textContent);
     }
-    console.log("GUESS: " + guess);
+    console.log("GUESS: " + input);
     currentRow++;
     currentTile = 0;
   }

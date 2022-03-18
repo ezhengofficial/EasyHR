@@ -95,6 +95,10 @@
             border-radius: 3px;
 
         }
+
+        .nav-link {
+          color: white
+        }
     </style>
 
 
@@ -104,27 +108,24 @@
 
 </head>
 
-<body class="d-flex h-100 text-center text-white bg-dark">
+<body class="text-white" style="background-color: #121213;">
+  <div class="lg-container">
+    {% block content %}
+    {% endblock %}
+  </div>
 
-    <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
-        <header class="mb-auto">
-            <div>
-                {% block content %}
-                {% endblock %}
-            </div>
-        </header>
+  <div class="lg-container">
+    {%block grid%}
+    {% endblock %}
+  </div>
+  
+  <div class="lg-container">
+    {%block keyboard%}
+    {% endblock %}
+  </div>
 
-
-        {%block grid%}
-        {% endblock %}
-
-        {%block keyboard%}
-        {% endblock %}
-
-        {% block js %}
-        {% endblock %}
-
-
+  {% block js %}
+  {% endblock %}
 
 </body>
 
