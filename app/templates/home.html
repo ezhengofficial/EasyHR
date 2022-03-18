@@ -3,122 +3,90 @@
 <h3 class="float-md-start">Wordle</h3>
 <h3 class="float-md-start example2">how2</h3>
 <button type="button" class="btn btn-primary" id="liveToastBtn">Show live toast</button>
+<script src="./static/js/boxes.js"></script>
 
 
 <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
-  <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-autohide="false">
-    <div class="toast-header" style="background:#121213">
-      <strong class="me-auto" >How To Play</strong>
-      <button type="button" class="btn-close" data-dismiss="toast" aria-label="Close" style="color: white">X</button>
-    </div>
-    <div class="toast-body" style="background:#121213">
-      <div class="instructions">
-        <p>Guess the <strong>WORDLE</strong> in six tries.</p>
-        <p>Each guess must be a valid five-letter word. Hit the enter button to submit.</p>
-        <p>After each guess, the color of the tiles will change to show how close your guess was to the word.</p>
-        <div class="examples">
-          <p><strong>Examples</strong></p>
-          <div class="example">
-            <div class="row">
-              <game-tile letter="w" evaluation="correct" reveal=""></game-tile>
-              <game-tile letter="e"></game-tile>
-              <game-tile letter="a"></game-tile>
-              <game-tile letter="r"></game-tile>
-              <game-tile letter="y"></game-tile>
-            </div>
-            <p>The letter <strong>W</strong> is in the word and in the correct spot.</p>
-          </div>
-          <div class="example">
-            <div class="row">
-              <game-tile letter="p"></game-tile>
-              <game-tile letter="i" evaluation="present" reveal=""></game-tile>
-              <game-tile letter="l"></game-tile>
-              <game-tile letter="l"></game-tile>
-              <game-tile letter="s"></game-tile>
-            </div>
-            <p>The letter <strong>I</strong> is in the word but in the wrong spot.</p>
-          </div>
-          <div class="example">
-            <div class="row">
-              <game-tile letter="v"></game-tile>
-              <game-tile letter="a"></game-tile>
-              <game-tile letter="g"></game-tile>
-              <game-tile letter="u" evaluation="absent" reveal=""></game-tile>
-              <game-tile letter="e"></game-tile>
-            </div>
-            <p>The letter <strong>U</strong> is not in the word in any spot.</p>
-          </div>
+    <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-autohide="false">
+        <div class="toast-header" style="background:#121213">
+            <strong class="me-auto">How To Play</strong>
+            <button type="button" class="btn-close" data-dismiss="toast" aria-label="Close"
+                style="color: white">X</button>
         </div>
-        <p><strong>A new WORDLE will be available each day!<strong></strong></strong></p><strong><strong>
-      </strong></strong></div>
+        <div class="toast-body" style="background:#121213">
+            <div class="instructions">
+                <p>Guess the <strong>WORDLE</strong> in six tries.</p>
+                <p>Each guess must be a valid five-letter word. Hit the enter button to submit.</p>
+                <p>After each guess, the color of the tiles will change to show how close your guess was to the word.
+                </p>
+                <div class="examples">
+                    <p><strong>Examples</strong></p>
+                    <div class="example">
+                        <div class="row">
+                            <game-tile letter="w" evaluation="correct" reveal=""></game-tile>
+                            <game-tile letter="e"></game-tile>
+                            <game-tile letter="a"></game-tile>
+                            <game-tile letter="r"></game-tile>
+                            <game-tile letter="y"></game-tile>
+                        </div>
+                        <p>The letter <strong>W</strong> is in the word and in the correct spot.</p>
+                    </div>
+                    <div class="example">
+                        <div class="row">
+                            <game-tile letter="p"></game-tile>
+                            <game-tile letter="i" evaluation="present" reveal=""></game-tile>
+                            <game-tile letter="l"></game-tile>
+                            <game-tile letter="l"></game-tile>
+                            <game-tile letter="s"></game-tile>
+                        </div>
+                        <p>The letter <strong>I</strong> is in the word but in the wrong spot.</p>
+                    </div>
+                    <div class="example">
+                        <div class="row">
+                            <game-tile letter="v"></game-tile>
+                            <game-tile letter="a"></game-tile>
+                            <game-tile letter="g"></game-tile>
+                            <game-tile letter="u" evaluation="absent" reveal=""></game-tile>
+                            <game-tile letter="e"></game-tile>
+                        </div>
+                        <p>The letter <strong>U</strong> is not in the word in any spot.</p>
+                    </div>
+                </div>
+                <p><strong>A new WORDLE will be available each day!<strong></strong></strong></p><strong><strong>
+                    </strong></strong>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
 <nav class="nav nav-masthead justify-content-center float-md-end">
-        <a class="nav-link active" aria-current="page" href="/leaderboard">Leaderboard</a>
-        <a class="nav-link" href="/login">Log in</a>
-        <a class="nav-link" href="/login">Sign up</a>
+    <a class="nav-link active" aria-current="page" href="/leaderboard">Leaderboard</a>
+    <a class="nav-link" href="/login">Log in</a>
+    <a class="nav-link" href="/login">Sign up</a>
 </nav>
 {% endblock %}
 
 {% block js %}
 <script>
-  var toastTrigger = document.getElementById('liveToastBtn')
-var toastLiveExample = document.getElementById('liveToast')
-if (toastTrigger) {
-  toastTrigger.addEventListener('click', function () {
-    var toast = new bootstrap.Toast(toastLiveExample)
+    var toastTrigger = document.getElementById('liveToastBtn')
+    var toastLiveExample = document.getElementById('liveToast')
+    if (toastTrigger) {
+        toastTrigger.addEventListener('click', function () {
+            var toast = new bootstrap.Toast(toastLiveExample)
 
-    toast.show()
-  })
-}
+            toast.show()
+        })
+    }
 </script>
 {% endblock %}
+
 {% block grid %}
-<main class="px-3">
-  <center><button class="newGrid">New Grid</button></center>
+<center><button class="newGrid">New Grid</button></center>
 
-  <div id="grid-container"></div
-
-</main>
+<!-- <main class="px-3">
+</main> -->
+<div id="grid-container"></div>
 {% endblock %}
+
 {% block keyboard %}
-<div id = "#keyboard">
-  <div class = "row1">
-  <button class = "key">Q</button>
-  <button class = "key">W</button>
-  <button class = "key">E</button>
-  <button class = "key">R</button>
-  <button class = "key">T</button>
-  <button class = "key">Y</button>
-  <button class = "key">U</button>
-  <button class = "key">I</button>
-  <button class = "key">O</button>
-  <button class = "key">P</button>
-  </div>
-  <div class = "row2">
-  <button class = "key">A</button>
-  <button class = "key">S</button>
-  <button class = "key">D</button>
-  <button class = "key">F</button>
-  <button class = "key">G</button>
-  <button class = "key">H</button>
-  <button class = "key">J</button>
-  <button class = "key">K</button>
-  <button class = "key">L</button>
-  </div>
-  <div class = "row3">
-  <button class = "key">Z</button>
-  <button class = "key">X</button>
-  <button class = "key">C</button>
-  <button class = "key">V</button>
-  <button class = "key">B</button>
-  <button class = "key">N</button>
-  <button class = "key">M</button>
-  </div>
-</div>
-
-
-
-
+<div id="key-container"></div>
 {% endblock %}
