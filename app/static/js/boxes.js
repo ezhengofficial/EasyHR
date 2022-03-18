@@ -79,6 +79,20 @@ function clicky(letter) {
   }
 }
 
+document.addEventListener("keyup", (e) =>{
+  let letter = String(e.key);
+  console.log("letter of keypressed " + letter)
+  if(letter.equals("DELETE")){
+    deleteLetter();
+    return
+  }else if(letter = "ENTER"){
+    nextRow();
+    return
+  }else{
+    addLetter(letter)
+  }
+})
+
 const addLetter = (letter) => {
   if (currentTile < 5) {
     // console.log(currentRow + " " + currentTile);
