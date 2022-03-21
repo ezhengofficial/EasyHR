@@ -99,6 +99,9 @@
         .nav-link {
           color: white
         }
+
+        
+        
     </style>
 
 
@@ -109,17 +112,18 @@
 </head>
 
 <body class="text-white" style="background-color: #121213;">
-  <div class="lg-container">
+  <div class="container-lg">
     {% block content %}
     {% endblock %}
   </div>
 
-  <div class="lg-container">
+  <div class="container-lg">
+    <br><br>
     {%block grid%}
     {% endblock %}
   </div>
   
-  <div class="lg-container">
+  <div class="container-sm" style="width: 300px;">
     {%block keyboard%}
     {% endblock %}
   </div>

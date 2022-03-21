@@ -118,7 +118,7 @@ const nextRow = () => {
   if (currentTile == 5) {
     for (var i = 0; i < 5; i++) {
       tile = document.getElementById("row#" + currentRow + "tile#" + i);
-      input = input.concat("", tile.textContent);
+      input = input.concat("", tile.textContent).toLowerCase();
 
     currentRow++;
     currentTile = 0;
