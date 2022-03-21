@@ -38,6 +38,7 @@ with app.app_context():
 
 @app.route("/")
 def home():
+    input = request.get_json().get('input')
     input = json.loads(input)
     input = json.dumps(input)
     wordle.guess(input)
