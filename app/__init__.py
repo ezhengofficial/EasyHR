@@ -36,16 +36,14 @@ with app.app_context():
     d = db.get_db()
     c = d.cursor()
 
-<<<<<<< HEAD
 @app.route("/")
 def home():
+    input = request.get_json().get('input')
     input = json.loads(input)
     input = json.dumps(input)
     wordle.guess(input)
     return render_template("home.html")
 
-=======
->>>>>>> 650940e25eb8a01e1083c70c0e16aca452ae05ff
 @app.route("/leaderboard")
 def leaderboard():
     return render_template("leaderboard.html")
