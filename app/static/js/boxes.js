@@ -118,16 +118,19 @@ const nextRow = () => {
   if (currentTile == 5) {
     for (var i = 0; i < 5; i++) {
       tile = document.getElementById("row#" + currentRow + "tile#" + i);
-      input = input.concat("", tile.textContent);
-    }
-    console.log("GUESS: " + input);
-
-    const request = new XMLHttpRequest()
-    request.open('POST', '/')
-    request.send()
+      input = input.concat("", tile.textContent).toLowerCase();
 
     currentRow++;
     currentTile = 0;
+
+    $.ajax({
+      url:'/',
+      type: 'POST',
+      data: JSON.stringify(input),
+    })
+    .done(function(result){
+      console.log(result)
+    })
   }
   if (currentRow >= 5) {
     //new wordle

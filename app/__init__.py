@@ -38,11 +38,13 @@ with app.app_context():
 
 @app.route("/")
 def home():
-    input = request.get_json().get('input')
-    input = json.loads(input)
-    input = json.dumps(input)
-    wordle.guess(input)
-    return render_template("home.html")
+    if request.method == 'POST':
+        input = request.get_json().get('input')
+        input = json.loads(input)
+        input = json.dumps(input)
+        wordle.guess(input)
+    else:
+        return render_template("home.html")
 
 @app.route("/leaderboard")
 def leaderboard():
