@@ -92,8 +92,11 @@ document.addEventListener("keyup", (e) =>{
     console.log("equals enter");
     return
   }else{
-    addLetter(letter)
-    console.log("added letter");
+    if(letter.length == 1 && letter.match(/[a-z]/i)){
+      addLetter(letter);
+      console.log("added letter");
+    }
+
   }
 })
 
