@@ -98,8 +98,19 @@ document.addEventListener("keyup", (e) =>{
   }
 })
 const colorChange = (input) =>{
+  var green = ""
   for(let i = 0; i < input.length; i++){
-    console.log(input[i]);
+    // console.log("word[i] " + word[i] + " --input[i] " + input[i]);
+    if(word[i] === input[i]){
+      console.log("match");
+      // console.log("word " + word[i]);
+      green = green.concat("", word[i]).toLowerCase();
+      console.log("green " + green);
+      tile = document.getElementById("row#" + currentRow + "tile#" + i);
+      tile.textContent = "g";
+      // tile.color = "abc"
+      //change textContent to datatype and then match data type to word color
+    }
   }
   if (input===word){
     console.log("input=word");
