@@ -67,7 +67,7 @@ const keys = [
 ];
 
 function clicky(letter) {
-  console.log(letter);
+  // console.log(letter);
   //   addLetter(letter);
   if (letter == "DELETE") {
     deleteLetter();
@@ -82,20 +82,16 @@ function clicky(letter) {
 
 document.addEventListener("keyup", (e) =>{
   let letter = String(e.key).toUpperCase();
-  console.log("letter of keypressed " + letter)
-  console.log("true?" + letter==="S")
+  // console.log("letter of keypressed " + letter)
+  // console.log("true?" + letter==="S")
   if(letter==="DELETE" || letter === "BACKSPACE"){
     deleteLetter();
-    console.log("equals del");
-    return
   }else if(letter==="ENTER"){
     nextRow();
-    console.log("equals enter");
-    return
   }else{
     if(letter.length == 1 && letter.match(/[a-z]/i)){
       addLetter(letter);
-      console.log("added letter");
+      // console.log("added letter");
     }
 
   }
@@ -141,7 +137,6 @@ const nextRow = () => {
 
     currentRow++;
     currentTile = 0;
-    colorChange(input);
     $.ajax({
       url:'/',
       type: 'POST',
@@ -151,6 +146,8 @@ const nextRow = () => {
       console.log(result)
     })
   }
+  console.log(input);
+  colorChange(input);
 }
   if (currentRow >= 5) {
     //new wordle
