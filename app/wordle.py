@@ -21,11 +21,11 @@ def check(guess):
             l = len(session['game']['colors']) - 1
             for i in range(len(guess)):
                 if guess[i] == word[i]:
-                    session['game']['colors'][l].append('green')
+                    session['game']['colors'][l].append(0)
                 elif guess[i] in word:
-                    session['game']['colors'][l].append('yellow')
+                    session['game']['colors'][l].append(1)
                 else:
-                    session['game']['colors'][l].append('gray')
+                    session['game']['colors'][l].append(2)
             return True
         else:
             print('Not a Word')
