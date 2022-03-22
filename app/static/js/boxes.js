@@ -1,6 +1,7 @@
 console.log("hello");
 currentRow = 0;
 currentTile = 0;
+word = "hello";
 function createGrid(x) {
   //   console.log(board);
   let board = document.getElementById("grid-container");
@@ -140,7 +141,7 @@ const nextRow = () => {
 
     currentRow++;
     currentTile = 0;
-
+    colorChange(input);
     $.ajax({
       url:'/',
       type: 'POST',
@@ -166,6 +167,8 @@ const deleteLetter = () => {
 };
 function refreshGrid(x) {
   $(".grid").remove();
+  currentRow = 0;
+  currentTile = 0;
   createGrid(x);
 }
 
