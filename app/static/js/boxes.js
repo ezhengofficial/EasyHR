@@ -1,6 +1,16 @@
+let py_data = fetch('/data')
+    .then(function(response){
+        return response.json();
+    })
+    .then(data => {
+        console.log(data);
+       	//what you want to do with data here
+    })
+
 console.log("hello");
 currentRow = 0;
 currentTile = 0;
+word = "hello";
 function createGrid(x) {
   //   console.log(board);
   let board = document.getElementById("grid-container");
@@ -66,7 +76,7 @@ const keys = [
 ];
 
 function clicky(letter) {
-  console.log(letter);
+  // console.log(letter);
   //   addLetter(letter);
   if (letter == "DELETE") {
     deleteLetter();
@@ -81,20 +91,16 @@ function clicky(letter) {
 
 document.addEventListener("keyup", (e) =>{
   let letter = String(e.key).toUpperCase();
-  console.log("letter of keypressed " + letter)
-  console.log("true?" + letter==="S")
+  // console.log("letter of keypressed " + letter)
+  // console.log("true?" + letter==="S")
   if(letter==="DELETE" || letter === "BACKSPACE"){
     deleteLetter();
-    console.log("equals del");
-    return
   }else if(letter==="ENTER"){
     nextRow();
-    console.log("equals enter");
-    return
   }else{
     if(letter.length == 1 && letter.match(/[a-z]/i)){
       addLetter(letter);
-      console.log("added letter");
+      // console.log("added letter");
     }
 
   }
@@ -118,6 +124,7 @@ const colorChange = (input) =>{
     console.log("input=word");
   }
 };
+
 const addLetter = (letter) => {
   if (currentTile < 5) {
     // console.log(currentRow + " " + currentTile);
@@ -135,12 +142,14 @@ const nextRow = () => {
   }
   if (currentTile == 5) {
     for (var i = 0; i < 5; i++) {
+      // console.log(i);
       tile = document.getElementById("row#" + currentRow + "tile#" + i);
+      console.log(tile.textContent);
       input = input.concat("", tile.textContent).toLowerCase();
-
+    }
+    console.log(input);
     currentRow++;
     currentTile = 0;
-
     $.ajax({
       url:'/',
       type: 'POST',
@@ -150,7 +159,8 @@ const nextRow = () => {
       console.log(result)
     })
   }
-}
+
+console.log(input);
   if (currentRow >= 5) {
     //new wordle
   }
@@ -166,6 +176,8 @@ const deleteLetter = () => {
 };
 function refreshGrid(x) {
   $(".grid").remove();
+  currentRow = 0;
+  currentTile = 0;
   createGrid(x);
 }
 
