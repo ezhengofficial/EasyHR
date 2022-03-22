@@ -1,7 +1,6 @@
-// console.log("hello");
+console.log("hello");
 currentRow = 0;
 currentTile = 0;
-var word = "hello"
 function createGrid(x) {
   //   console.log(board);
   let board = document.getElementById("grid-container");
@@ -71,8 +70,10 @@ function clicky(letter) {
   //   addLetter(letter);
   if (letter == "DELETE") {
     deleteLetter();
+    return;
   } else if (letter == "ENTER") {
     nextRow();
+    return;
   } else {
     addLetter(letter);
   }
@@ -80,19 +81,20 @@ function clicky(letter) {
 
 document.addEventListener("keyup", (e) =>{
   let letter = String(e.key).toUpperCase();
-  // console.log("letter of keypressed " + letter)
-  // console.log("true?" + letter==="S")
+  console.log("letter of keypressed " + letter)
+  console.log("true?" + letter==="S")
   if(letter==="DELETE" || letter === "BACKSPACE"){
     deleteLetter();
-    // console.log("equals del");
+    console.log("equals del");
+    return
   }else if(letter==="ENTER"){
     nextRow();
-    colorChange();
-    // console.log("equals enter");
+    console.log("equals enter");
+    return
   }else{
     if(letter.length == 1 && letter.match(/[a-z]/i)){
       addLetter(letter);
-      // console.log("added letter");
+      console.log("added letter");
     }
 
   }
@@ -135,15 +137,18 @@ const nextRow = () => {
     for (var i = 0; i < 5; i++) {
       tile = document.getElementById("row#" + currentRow + "tile#" + i);
       input = input.concat("", tile.textContent).toLowerCase();
-    }
-    console.log("GUESS: " + input);
-    colorChange(input);
-    const request = new XMLHttpRequest()
-    request.open('POST', '/')
-    request.send()
 
     currentRow++;
     currentTile = 0;
+
+    $.ajax({
+      url:'/',
+      type: 'POST',
+      data: JSON.stringify(input),
+    })
+    .done(function(result){
+      console.log(result)
+    })
   }
   if (currentRow >= 5) {
     //new wordle
@@ -158,8 +163,6 @@ const deleteLetter = () => {
     tile.setAttribute("color", letter);
   }
 };
-
-
 function refreshGrid(x) {
   $(".grid").remove();
   createGrid(x);
