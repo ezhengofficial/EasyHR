@@ -124,6 +124,7 @@ const colorChange = (input) =>{
     console.log("input=word");
   }
 };
+
 const addLetter = (letter) => {
   if (currentTile < 5) {
     // console.log(currentRow + " " + currentTile);
@@ -141,9 +142,12 @@ const nextRow = () => {
   }
   if (currentTile == 5) {
     for (var i = 0; i < 5; i++) {
+      // console.log(i);
       tile = document.getElementById("row#" + currentRow + "tile#" + i);
+      console.log(tile.textContent);
       input = input.concat("", tile.textContent).toLowerCase();
-
+    }
+    console.log(input);
     currentRow++;
     currentTile = 0;
     $.ajax({
@@ -155,9 +159,8 @@ const nextRow = () => {
       console.log(result)
     })
   }
-  console.log(input);
-  colorChange(input);
-}
+
+console.log(input);
   if (currentRow >= 5) {
     //new wordle
   }
