@@ -1,3 +1,12 @@
+let py_data = fetch('/data')
+    .then(function(response){
+        return response.json();
+    })
+    .then(data => {
+        console.log(data);
+       	//what you want to do with data here
+    })
+
 console.log("hello");
 currentRow = 0;
 currentTile = 0;
@@ -140,15 +149,6 @@ const nextRow = () => {
 
     currentRow++;
     currentTile = 0;
-
-    $.ajax({
-      url:'/',
-      type: 'POST',
-      data: JSON.stringify(input),
-    })
-    .done(function(result){
-      console.log(result)
-    })
   }
 }
   if (currentRow >= 5) {
