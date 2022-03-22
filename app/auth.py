@@ -70,6 +70,8 @@ def signup():
                     exists = c.fetchone()
                     d.close()
                     if (exists != None):
+                        userpath = "userfiles/%s.txt" % request.form['username']
+                        f = open(userpath, "x")
                         return render_template("login.html", action="/login", name="Login", success="Signed up successfully!")
                     else:
                         return render_template("login.html", action="/signup", name="Sign Up", error="Some error occurred. Please try signing up again.")

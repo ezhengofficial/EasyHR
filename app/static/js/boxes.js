@@ -150,6 +150,7 @@ const nextRow = () => {
       console.log(result)
     })
   }
+}
   if (currentRow >= 5) {
     //new wordle
   }

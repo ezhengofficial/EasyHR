@@ -30,7 +30,6 @@ app.register_blueprint(auth.bp)
 
 app.register_blueprint(matchhistory.bp)
 
-
 with app.app_context():
     db.init_db()
     d = db.get_db()
@@ -39,10 +38,11 @@ with app.app_context():
 @app.route("/")
 def home():
     if request.method == 'POST':
-        input = request.get_json().get('input')
-        input = json.loads(input)
-        input = json.dumps(input)
+        input = request.get_json()
+        input = jsonify(input)
+        print(input)
         wordle.guess(input)
+
     else:
         return render_template("home.html")
 
