@@ -7,7 +7,7 @@ function sendUserInfo(data) {
 
     // A JSON payload
     body: JSON.stringify({
-      data
+      data,
     }),
   })
     .then(function (response) {
@@ -37,6 +37,7 @@ function createGrid(x) {
     for (var columns = 0; columns < 5; columns++) {
       let tile = document.createElement("div");
       tile.setAttribute("id", "row#" + rows + "tile#" + columns);
+      tile.setAttribute("color", "gray");
       tile.className = "grid";
       row.appendChild(tile);
     }
@@ -104,38 +105,44 @@ function clicky(letter) {
   }
 }
 
-document.addEventListener("keyup", (e) =>{
+document.addEventListener("keyup", (e) => {
   let letter = String(e.key).toUpperCase();
   // console.log("letter of keypressed " + letter)
   // console.log("true?" + letter==="S")
-  if(letter==="DELETE" || letter === "BACKSPACE"){
+  if (letter === "DELETE" || letter === "BACKSPACE") {
     deleteLetter();
-  }else if(letter==="ENTER"){
+  } else if (letter === "ENTER") {
     nextRow();
-  }else{
-    if(letter.length == 1 && letter.match(/[a-z]/i)){
+  } else {
+    if (letter.length == 1 && letter.match(/[a-z]/i)) {
       addLetter(letter);
       // console.log("added letter");
     }
-
   }
-})
-const colorChange = (input) =>{
-  var green = ""
-  for(let i = 0; i < input.length; i++){
+});
+const colorChange = (input) => {
+  var green = "";
+  for (let i = 0; i < input.length; i++) {
     // console.log("word[i] " + word[i] + " --input[i] " + input[i]);
-    if(word[i] === input[i]){
+    tile = document.getElementById("row#" + currentRow + "tile#" + i);
+
+    if (word.includes(input[i])) {
+      tile.textContent = "y";
+      tile.setAttribute("color", "yellow");
+    }
+    if (word[i] === input[i]) {
       console.log("match");
       // console.log("word " + word[i]);
       green = green.concat("", word[i]).toLowerCase();
       console.log("green " + green);
-      tile = document.getElementById("row#" + currentRow + "tile#" + i);
       tile.textContent = "g";
+      tile.setAttribute("color", "green");
+
       // tile.color = "abc"
       //change textContent to datatype and then match data type to word color
     }
   }
-  if (input===word){
+  if (input === word) {
     console.log("input=word");
   }
 };
@@ -145,7 +152,7 @@ const addLetter = (letter) => {
     // console.log(currentRow + " " + currentTile);
     tile = document.getElementById("row#" + currentRow + "tile#" + currentTile);
     tile.textContent = letter;
-    tile.setAttribute("color", letter);
+    // tile.setAttribute("color", letter);
     currentTile++;
   }
 };
@@ -161,14 +168,15 @@ const nextRow = () => {
       tile = document.getElementById("row#" + currentRow + "tile#" + i);
       console.log(tile.textContent);
       input = input.concat("", tile.textContent).toLowerCase();
-      sendUserInfo(input)
+      sendUserInfo(input);
     }
     console.log(input);
+    colorChange(input);
     currentRow++;
     currentTile = 0;
   }
 
-console.log(input);
+  console.log(input);
   if (currentRow >= 5) {
     //new wordle
   }
