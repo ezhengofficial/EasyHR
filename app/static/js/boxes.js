@@ -1,3 +1,5 @@
+// import { guesslist } from "./guesslist";
+
 function sendUserInfo(data) {
   fetch("/getdata", {
     method: "POST",
@@ -22,9 +24,10 @@ function sendUserInfo(data) {
     });
 }
 
-console.log("hello");
+// console.log("hello");
 currentRow = 0;
 currentTile = 0;
+//change to sync w python
 word = "hello";
 function createGrid(x) {
   //   console.log(board);
@@ -37,7 +40,7 @@ function createGrid(x) {
     for (var columns = 0; columns < 5; columns++) {
       let tile = document.createElement("div");
       tile.setAttribute("id", "row#" + rows + "tile#" + columns);
-      tile.setAttribute("color", "gray");
+      tile.setAttribute("color", "default");
       tile.className = "grid";
       row.appendChild(tile);
     }
@@ -131,15 +134,17 @@ const colorChange = (input) => {
       tile.setAttribute("color", "yellow");
     }
     if (word[i] === input[i]) {
-      console.log("match");
+      //   console.log("match");
       // console.log("word " + word[i]);
       green = green.concat("", word[i]).toLowerCase();
-      console.log("green " + green);
+      //   console.log("green " + green);
       tile.textContent = "g";
       tile.setAttribute("color", "green");
 
       // tile.color = "abc"
       //change textContent to datatype and then match data type to word color
+    } else {
+      tile.setAttribute("color", "gray");
     }
   }
   if (input === word) {
@@ -168,15 +173,21 @@ const nextRow = () => {
       tile = document.getElementById("row#" + currentRow + "tile#" + i);
       console.log(tile.textContent);
       input = input.concat("", tile.textContent).toLowerCase();
-      sendUserInfo(input);
     }
     console.log(input);
-    colorChange(input);
-    currentRow++;
-    currentTile = 0;
+    // console.log(guesslist);
+    if (guesslist.includes(input)) {
+      sendUserInfo(input);
+      colorChange(input);
+      currentRow++;
+      currentTile = 0;
+    } else {
+      console.log("not in wordlist");
+      return;
+    }
   }
 
-  console.log(input);
+  //   console.log(input);
   if (currentRow >= 5) {
     //new wordle
   }
