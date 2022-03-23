@@ -40,7 +40,7 @@ function createGrid(x) {
     for (var columns = 0; columns < 5; columns++) {
       let tile = document.createElement("div");
       tile.setAttribute("id", "row#" + rows + "tile#" + columns);
-      tile.setAttribute("color", "gray");
+      tile.setAttribute("color", "default");
       tile.className = "grid";
       row.appendChild(tile);
     }
@@ -143,6 +143,8 @@ const colorChange = (input) => {
 
       // tile.color = "abc"
       //change textContent to datatype and then match data type to word color
+    } else {
+      tile.setAttribute("color", "gray");
     }
   }
   if (input === word) {
