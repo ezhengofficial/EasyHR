@@ -20,11 +20,6 @@ app.register_blueprint(auth.bp)
 
 app.register_blueprint(matchhistory.bp)
 
-with app.app_context():
-    db.init_db()
-    d = db.get_db()
-    c = d.cursor()
-
 @app.route("/", methods=['GET', 'POST'])
 def home():
     # if 'request.method == 'POST':
