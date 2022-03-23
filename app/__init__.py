@@ -37,14 +37,19 @@ with app.app_context():
 
 @app.route("/", methods=['GET', 'POST'])
 def home():
-    if request.method == 'POST':
-        input = request.get_json()
-        input = jsonify(input)
-        print(input)
-        wordle.guess(input)
+    # if 'request.method == 'POST':
+    #     input = request.get_json()
+    #     input = jsonify(input)
+    #     print(input)
+    #     wordle.guess(input)
 
-    else:
+    # else:
+    #     return render_template("home.html")'
+
+    if 'username' in session:
         return render_template("home.html")
+    else:
+        redirect("/login")
 
 @app.route("/leaderboard", methods=['GET', 'POST'])
 def leaderboard():
@@ -70,7 +75,19 @@ def getdata():
         print('Incoming..')
         a = request.get_json()
         print(a.get('data'))
-        return 'OK', 200
+        wordle.new_game(session)
+        wordle.check(a.get('data'))
+
+        s = ''
+        for i in session['game']['colors']:
+            if i == 0: #green
+                s.append('g')
+            elif i == 1: #yellow
+                s.append('y')
+            else: #gray
+                s.append('b')
+        
+        return s
 
     # GET request
     else:
