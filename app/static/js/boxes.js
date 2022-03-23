@@ -1,11 +1,26 @@
-let py_data = fetch('/data')
-    .then(function(response){
-        return response.json();
+function sendUserInfo(data) {
+  fetch("/getdata", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+
+    // A JSON payload
+    body: JSON.stringify({
+      data
+    }),
+  })
+    .then(function (response) {
+      // At this point, Flask has printed our JSON
+      return response.text();
     })
-    .then(data => {
-        console.log(data);
-       	//what you want to do with data here
-    })
+    .then(function (text) {
+      console.log("POST response: ");
+
+      // Should be 'OK' if everything was successful
+      console.log(text);
+    });
+}
 
 console.log("hello");
 currentRow = 0;
@@ -146,18 +161,11 @@ const nextRow = () => {
       tile = document.getElementById("row#" + currentRow + "tile#" + i);
       console.log(tile.textContent);
       input = input.concat("", tile.textContent).toLowerCase();
+      sendUserInfo(input)
     }
     console.log(input);
     currentRow++;
     currentTile = 0;
-    $.ajax({
-      url:'/',
-      type: 'POST',
-      data: JSON.stringify(input),
-    })
-    .done(function(result){
-      console.log(result)
-    })
   }
 
 console.log(input);

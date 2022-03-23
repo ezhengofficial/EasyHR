@@ -35,7 +35,7 @@ with app.app_context():
     d = db.get_db()
     c = d.cursor()
 
-@app.route("/")
+@app.route("/", methods=['GET', 'POST'])
 def home():
     if request.method == 'POST':
         input = request.get_json()
@@ -46,7 +46,7 @@ def home():
     else:
         return render_template("home.html")
 
-@app.route("/leaderboard")
+@app.route("/leaderboard", methods=['GET', 'POST'])
 def leaderboard():
     return render_template("leaderboard.html")
 
@@ -61,6 +61,21 @@ def play():
             wordle.guess(input)
             print(input)
             return jsonify(session['game'])
+
+@app.route('/getdata', methods=['GET', 'POST'])
+def getdata():
+
+    # POST request
+    if request.method == 'POST':
+        print('Incoming..')
+        a = request.get_json()
+        print(a.get('data'))
+        return 'OK', 200
+
+    # GET request
+    else:
+        message = {'greeting':'Hello from Flask!'}
+        return jsonify(message)  # serialize and use JSON headers
 
 if __name__ == "__main__":
     app.debug = True
