@@ -97,39 +97,37 @@
         }
 
         .nav-link {
-          color: white
+            color: white
         }
-
-
-
     </style>
 
 
     <!-- Custom styles for this template -->
     <link href="cover.css" rel="stylesheet">
+    <script src="./static/js/guesslist.js"></script>
     <script src="./static/js/boxes.js"></script>
 
 </head>
 
 <body class="text-white" style="background-color: #121213;">
-  <div class="container-lg">
-    {% block content %}
-    {% endblock %}
-  </div>
+    <div class="container-lg">
+        {% block content %}
+        {% endblock %}
+    </div>
 
-  <div class="container-lg">
-    <br><br>
-    {%block grid%}
-    {% endblock %}
-  </div>
+    <div class="container-lg">
+        <br><br>
+        {%block grid%}
+        {% endblock %}
+    </div>
 
-  <div class="container-sm" style="width: 300px;">
-    {%block keyboard%}
-    {% endblock %}
-  </div>
+    <div class="container-sm" style="width: 300px;">
+        {%block keyboard%}
+        {% endblock %}
+    </div>
 
-  {% block js %}
-  {% endblock %}
+    {% block js %}
+    {% endblock %}
 
 </body>
 

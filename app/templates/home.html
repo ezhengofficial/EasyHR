@@ -1,10 +1,10 @@
 {% extends "base.html" %}
 {% block content %}
-
+<script src="./static/js/guesslist.js"></script>
 <script src="./static/js/boxes.js"></script>
 <ul class="nav nav-tabs justify-content-center ">
     <li class="nav-item">
-      <a class="nav-link active" aria-current="page" href="/">Wordle</a>
+        <a class="nav-link active" aria-current="page" href="/">Wordle</a>
     </li>
     <li class="nav-item">
     </li>
@@ -26,7 +26,7 @@
         <a class="nav-link" href="/logout">Log Out</a>
     </li>
     {%endif%}
-  </ul>
+</ul>
 
 <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
     <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-autohide="false">
