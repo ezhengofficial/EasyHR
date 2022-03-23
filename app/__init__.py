@@ -9,31 +9,16 @@ import auth
 import matchhistory
 import wordle
 
-def create_app():
-    app = Flask(__name__)
-    # Configure app key & DB location
-    app.config.from_mapping(
-        SECRET_KEY = os.urandom(32),
-        DATABASE = os.path.join(app.instance_path, db.DB_FILE)
-    )
-    # Ensure the DB location exists
-    try:
-        os.makedirs(app.instance_path)
-    except OSError:
-        pass
+app = Flask(__name__)
 
-    return app
-
-app = create_app()
+app.secret_key = os.urandom(32),
+DATABASE = os.path.join(os.path.dirname(__file__), "database.db")
+db = sqlite3.connect(DATABASE, check_same_thread=False)
+c = db.cursor()
 
 app.register_blueprint(auth.bp)
 
 app.register_blueprint(matchhistory.bp)
-
-with app.app_context():
-    db.init_db()
-    d = db.get_db()
-    c = d.cursor()
 
 @app.route("/", methods=['GET', 'POST'])
 def home():
