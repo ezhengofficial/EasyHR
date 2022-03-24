@@ -1,23 +1,17 @@
 from flask import g
 import sqlite3
-
-DB_FILE="database.db"
+import os
 
 create_users = '''CREATE TABLE IF NOT EXISTS USERS(
                 ID INTEGER PRIMARY KEY,
                 username TEXT UNIQUE,
                 hash TEXT,
-                userfile TEXT
+                userfile TEXT,
                 lastplayed TEXT)'''
 
-
-def get_db():
-    db = sqlite3.connect(DB_FILE)
-    db.row_factory = sqlite3.Row
-    return db
-
 def init_db():
-    d = get_db()
-    c = d.cursor()
+    DATABASE = os.path.join(os.path.dirname(__file__), "database.db")
+    db = sqlite3.connect(DATABASE, check_same_thread=False)
+    c = db.cursor()
     c.execute(create_users)
-    d.commit()
+    db.commit()

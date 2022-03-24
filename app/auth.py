@@ -4,10 +4,10 @@ import os
 import urllib3
 import sqlite3
 import time
+from datetime import date
 from db import get_db
 
 bp = Blueprint('auth', __name__)
-
 
 def isAlphaNum(string):
     """
@@ -18,12 +18,6 @@ def isAlphaNum(string):
         if not ((0x41 <= o <= 0x5A) or (0x61 <= o <= 0x7A) or (0x30 <= o <= 0x39)):
             return False
     return True
-
-
-# Home page
-@bp.route("/")
-def index():
-    return render_template("home.html", user=session.get('username'))
 
 # Signup function
 @bp.route("/signup", methods=['GET', 'POST'])
@@ -62,8 +56,8 @@ def signup():
                 password = str(password)
                 # Checking to see if password follows proper length
                 if len(password) > 7 and len(password) <= 50:
-                    c.execute("""INSERT INTO users (username,hash) VALUES (?,?)""",
-                              (request.form['username'], password))
+                    c.execute("""INSERT INTO users (username,hash,lastplayed) VALUES (?,?,?)""",
+                              (request.form['username'], password, date.today()))
                     d.commit()
                     c.execute(
                         """SELECT username FROM users WHERE username = ?;""", (request.form['username'],))

@@ -180,7 +180,7 @@ const nextRow = () => {
       sendUserInfo(input);
       colorChange(input);
       if (input == word) {
-        
+        alert("Congrats, you win!")
       }
       else {
         currentRow++;
