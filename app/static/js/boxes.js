@@ -18,7 +18,7 @@ function sendUserInfo(data) {
       return response.text();
     })
     .then(function (text) {
-      console.log("POST response: ");
+      //   console.log("POST response: ");
 
       // Should be 'OK' if everything was successful
       console.log(text);
@@ -41,7 +41,7 @@ fetch("/getword", {
     return response.text();
   })
   .then(function (text) {
-    console.log("Word: ");
+    // console.log("Word: ");
 
     // Should be 'OK' if everything was successful
     console.log(text);
@@ -150,6 +150,7 @@ document.addEventListener("keyup", (e) => {
 });
 const colorChange = (input) => {
   var green = "";
+  inputChange = word;
   for (let i = 0; i < input.length; i++) {
     // console.log("word[i] " + word[i] + " --input[i] " + input[i]);
     tile = document.getElementById("row#" + currentRow + "tile#" + i);
@@ -161,20 +162,34 @@ const colorChange = (input) => {
       //   console.log("green " + green);
       //tile.textContent = "g";
       tile.setAttribute("style", "background-color: #538d4e");
-
+      inputChange = inputChange.replace(input[i], "");
+      console.log("after relacement: " + inputChange + " at position " + i);
       // tile.color = "abc"
       //change textContent to datatype and then match data type to word color
-    } else if (word.includes(input[i])) {
-      //tile.textContent = "y";
-      tile.setAttribute("style", "background-color: #b59f3b");
     } else {
       tile.setAttribute("style", "background-color: gray");
       button.setAttribute("style", "background-color: #A9A9A9");
     }
   }
-  if (input === word) {
-    console.log("input=word");
+
+  for (let i = 0; i < input.length; i++) {
+    str = tile.getAttribute("style");
+    // if !(str ===);
+    console.log(input.length);
+    if (inputChange.includes(input[i])) {
+      tile = document.getElementById("row#" + currentRow + "tile#" + i);
+
+      console.log("changed?: " + inputChange);
+      console.log("the word has: " + input[i] + " at position " + i);
+      //tile.textContent = "y";
+      inputChange = inputChange.replace(word[i], "");
+      tile.setAttribute("style", "background-color: #b59f3b");
+    }
   }
+
+  //   if (input === word) {
+  //     console.log("input=word");
+  //   }
 };
 
 const addLetter = (letter) => {
@@ -190,7 +205,7 @@ const addLetter = (letter) => {
 const nextRow = () => {
   input = "";
   if (currentTile != 5) {
-    console.log("not allowed");
+    // console.log("not allowed");
     alert("Word must be 5 letters long");
   }
   if (currentTile == 5) {
@@ -220,7 +235,7 @@ const nextRow = () => {
 
   //   console.log(input);
   if (currentRow >= 6) {
-    alert("Game Over! Try again tomorrow!");
+    alert("Game Over! Try again!");
   }
 };
 
@@ -245,6 +260,6 @@ $(document).ready(function () {
   createGrid(6);
   $(".newGrid").click(function () {
     refreshGrid(6);
-    console.log("newGrid");
+    // console.log("newGrid");
   });
 });
