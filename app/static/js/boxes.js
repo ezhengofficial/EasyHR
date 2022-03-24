@@ -128,10 +128,6 @@ const colorChange = (input) => {
     // console.log("word[i] " + word[i] + " --input[i] " + input[i]);
     tile = document.getElementById("row#" + currentRow + "tile#" + i);
 
-    if (word.includes(input[i])) {
-      //tile.textContent = "y";
-      tile.setAttribute("style", "background-color: #FFFF00");
-    }
     if (word[i] === input[i]) {
       //   console.log("match");
       // console.log("word " + word[i]);
@@ -142,7 +138,13 @@ const colorChange = (input) => {
 
       // tile.color = "abc"
       //change textContent to datatype and then match data type to word color
-    } else {
+    }
+    else if (word.includes(input[i])) {
+      //tile.textContent = "y";
+      tile.setAttribute("style", "background-color: #FFFF00");
+    }
+    
+    else {
       tile.setAttribute("style", "background-color: #D3D3D3");
     }
   }
