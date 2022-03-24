@@ -1,5 +1,5 @@
 // import { guesslist } from "./guesslist";
-let word = '';
+let word = "";
 
 function sendUserInfo(data) {
   fetch("/getdata", {
@@ -45,14 +45,13 @@ fetch("/getword", {
 
     // Should be 'OK' if everything was successful
     console.log(text);
-    word = text
+    word = text;
   });
 
 // console.log("hello");
 currentRow = 0;
 currentTile = 0;
 //change to sync w python
-
 
 function createGrid(x) {
   //   console.log(board);
@@ -154,7 +153,7 @@ const colorChange = (input) => {
   for (let i = 0; i < input.length; i++) {
     // console.log("word[i] " + word[i] + " --input[i] " + input[i]);
     tile = document.getElementById("row#" + currentRow + "tile#" + i);
-
+    button = document.getElementById("key#" + input[i].toUpperCase());
     if (word[i] === input[i]) {
       //   console.log("match");
       // console.log("word " + word[i]);
@@ -165,14 +164,12 @@ const colorChange = (input) => {
 
       // tile.color = "abc"
       //change textContent to datatype and then match data type to word color
-    }
-    else if (word.includes(input[i])) {
+    } else if (word.includes(input[i])) {
       //tile.textContent = "y";
       tile.setAttribute("style", "background-color: #b59f3b");
-    }
-    
-    else {
+    } else {
       tile.setAttribute("style", "background-color: gray");
+      button.setAttribute("style", "background-color: #A9A9A9");
     }
   }
   if (input === word) {
@@ -194,7 +191,7 @@ const nextRow = () => {
   input = "";
   if (currentTile != 5) {
     console.log("not allowed");
-    alert("Word must be 5 letters long")
+    alert("Word must be 5 letters long");
   }
   if (currentTile == 5) {
     for (var i = 0; i < 5; i++) {
@@ -209,23 +206,21 @@ const nextRow = () => {
       sendUserInfo(input);
       colorChange(input);
       if (input == word) {
-        alert("Congrats, you win!")
-      }
-      else {
+        alert("Congrats, you win!");
+      } else {
         currentRow++;
         currentTile = 0;
       }
-    } 
-    else {
+    } else {
       console.log("not in wordlist");
-      alert("Not a Word")
+      alert("Not a Word");
       return;
     }
   }
 
   //   console.log(input);
   if (currentRow >= 6) {
-      alert("Game Over! Try again tomorrow!")
+    alert("Game Over! Try again tomorrow!");
   }
 };
 
