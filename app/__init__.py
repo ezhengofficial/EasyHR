@@ -4,7 +4,7 @@ import os
 import urllib3
 import sqlite3
 import time
-import db
+from db import init_db
 import auth
 import matchhistory
 import wordle
@@ -16,6 +16,8 @@ app.secret_key = os.urandom(32),
 DATABASE = os.path.join(os.path.dirname(__file__), "database.db")
 db = sqlite3.connect(DATABASE, check_same_thread=False)
 c = db.cursor()
+
+init_db()
 
 app.register_blueprint(auth.bp)
 
