@@ -55,6 +55,20 @@ def getdata():
         message = {'greeting':'Hello from Flask!'}
         return jsonify(message)  # serialize and use JSON headers
 
+@app.route('/getword', methods=['GET', 'POST'])
+def getword():
+    # POST request
+    if request.method == 'POST':
+        print('Incoming..')
+        a = request.get_json()
+        print(a.get('data'))
+
+        return wordle.new_word()
+    # GET request
+    else:
+        message = {'greeting':'Hello from Flask!'}
+        return jsonify(message)  # serialize and use JSON headers
+
 if __name__ == "__main__":
     app.debug = True
     app.run()

@@ -37,10 +37,7 @@ def check(guess):
 #Creates a new Wordle
 def new_word():
     new =  str(random.choice(wordlist))
-    global word
-    while (new == word):
-        new =  str(random.choice(wordlist))
-    word = new
+    return new
 
 #New Game
 def new_game(session):

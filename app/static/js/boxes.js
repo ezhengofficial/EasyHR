@@ -1,4 +1,6 @@
 // import { guesslist } from "./guesslist";
+let word = '';
+
 function sendUserInfo(data) {
   fetch("/getdata", {
     method: "POST",
@@ -23,11 +25,35 @@ function sendUserInfo(data) {
     });
 }
 
+fetch("/getword", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+  },
+
+  // A JSON payload
+  body: JSON.stringify({
+    word,
+  }),
+})
+  .then(function (response) {
+    // At this point, Flask has printed our JSON
+    return response.text();
+  })
+  .then(function (text) {
+    console.log("Word: ");
+
+    // Should be 'OK' if everything was successful
+    console.log(text);
+    word = text
+  });
+
 // console.log("hello");
 currentRow = 0;
 currentTile = 0;
 //change to sync w python
-word = "hello";
+
+
 function createGrid(x) {
   //   console.log(board);
   let board = document.getElementById("grid-container");
@@ -197,8 +223,8 @@ const nextRow = () => {
   }
 
   //   console.log(input);
-  if (currentRow >= 5) {
-      //new wordle
+  if (currentRow >= 6) {
+      alert("Game Over! Try again tomorrow!")
   }
 };
 
