@@ -65,7 +65,6 @@ def signup():
                     d.close()
                     if (exists != None):
                         userpath = "userfiles/%s.txt" % request.form['username']
-                        f = open(userpath, "a")
                         f.close()
                         return render_template("login.html", action="/login", name="Login", success="Signed up successfully!")
                     else:
