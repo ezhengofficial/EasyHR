@@ -9,9 +9,14 @@ create_users = '''CREATE TABLE IF NOT EXISTS USERS(
                 userfile TEXT,
                 lastplayed TEXT)'''
 
-def init_db():
+
+def get_db():
     DATABASE = os.path.join(os.path.dirname(__file__), "database.db")
     db = sqlite3.connect(DATABASE, check_same_thread=False)
-    c = db.cursor()
+    return db
+
+def init_db():
+    d = get_db()
+    c = d.cursor()
     c.execute(create_users)
-    db.commit()
+    d.commit()

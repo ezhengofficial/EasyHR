@@ -5,7 +5,7 @@ from datetime import date
 from matchhistory import *
 
 lastday = ''
-word = ''
+word = 'hello'
 
 #Checks User Guesses
 def check(guess): 
@@ -47,7 +47,7 @@ def new_game(session):
     if 'game' in session:
         del session['game']
 
-    session = dict()
+    session['game'] = dict()
     session['game']['guesses'] = []
     session['game']['colors'] = []
         
