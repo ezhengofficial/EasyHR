@@ -27,7 +27,7 @@ app.register_blueprint(matchhistory.bp)
 def home():
     if 'username' in session:
         c.execute("""SELECT lastplayed FROM users WHERE username = ?;""",
-                      (session.get('username')))
+                      (session.get('username'),))
         if c.fetchone() != date.today():
             c.execute("""UPDATE users SET lastplayed = ? WHERE username = ?;""",
                   (date.today(), session.get('username')))

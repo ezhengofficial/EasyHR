@@ -1,5 +1,4 @@
 // import { guesslist } from "./guesslist";
-
 function sendUserInfo(data) {
   fetch("/getdata", {
     method: "POST",
@@ -130,21 +129,21 @@ const colorChange = (input) => {
     tile = document.getElementById("row#" + currentRow + "tile#" + i);
 
     if (word.includes(input[i])) {
-      tile.textContent = "y";
-      tile.setAttribute("color", "yellow");
+      //tile.textContent = "y";
+      tile.setAttribute("style", "background-color: #FFFF00");
     }
     if (word[i] === input[i]) {
       //   console.log("match");
       // console.log("word " + word[i]);
       green = green.concat("", word[i]).toLowerCase();
       //   console.log("green " + green);
-      tile.textContent = "g";
-      tile.setAttribute("color", "green");
+      //tile.textContent = "g";
+      tile.setAttribute("style", "background-color: #00FF00");
 
       // tile.color = "abc"
       //change textContent to datatype and then match data type to word color
     } else {
-      tile.setAttribute("color", "gray");
+      tile.setAttribute("style", "background-color: #D3D3D3");
     }
   }
   if (input === word) {
@@ -165,7 +164,8 @@ const addLetter = (letter) => {
 const nextRow = () => {
   input = "";
   if (currentTile != 5) {
-    console.log("not allwoed");
+    console.log("not allowed");
+    alert("Word must be 5 letters long")
   }
   if (currentTile == 5) {
     for (var i = 0; i < 5; i++) {
@@ -179,17 +179,24 @@ const nextRow = () => {
     if (guesslist.includes(input)) {
       sendUserInfo(input);
       colorChange(input);
-      currentRow++;
-      currentTile = 0;
-    } else {
+      if (input == word) {
+        
+      }
+      else {
+        currentRow++;
+        currentTile = 0;
+      }
+    } 
+    else {
       console.log("not in wordlist");
+      alert("Not a Word")
       return;
     }
   }
 
   //   console.log(input);
   if (currentRow >= 5) {
-    //new wordle
+      //new wordle
   }
 };
 
