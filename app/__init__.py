@@ -14,7 +14,7 @@ app = Flask(__name__)
 
 app.secret_key = os.urandom(32),
 DATABASE = os.path.join(os.path.dirname(__file__), "database.db")
-db = sqlite3.connect(DATABASE, check_same_thread=False)
+db = sqlite3.connect(DATABASE, check_same_thread=False, timeout=10)
 c = db.cursor()
 
 init_db()
