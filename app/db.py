@@ -7,7 +7,8 @@ create_users = '''CREATE TABLE IF NOT EXISTS USERS(
                 ID INTEGER PRIMARY KEY,
                 username TEXT UNIQUE,
                 hash TEXT,
-                userfile TEXT)'''
+                userfile TEXT
+                lastplayed TEXT)'''
 
 
 def get_db():
