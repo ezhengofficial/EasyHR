@@ -9,16 +9,13 @@
     <li class="nav-item">
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="/leaderboard">Leaderboard</a>
-    </li>
-    <li class="nav-item">
         <a class="nav-link btn" id="liveToastBtn">How-To</a>
     </li>
     {% if user == None %}
     <li class="nav-item">
         <a class="nav-link" href="/login">Login</a>
     </li>
-    {%else%}
+    {% else %}
     <li class="nav-item">
         <a class="nav-link" href="/history">{{user}}</a>
     </li>
@@ -43,30 +40,34 @@
                 </p>
                 <div class="examples">
                     <p><strong>Examples</strong></p>
-                    <!-- <div id="row#0" class="row">
-                        <div id="row#0tile#0" class="grid" color="green">F</div>
-                        <div id="row#0tile#1" class="grid"></div>
-                        <div id="row#0tile#2" class="grid"></div>
-                        <div id="row#0tile#3" class="grid"></div>
-                        <div id="row#0tile#4" class="grid"></div>
-                    </div> -->
                     <div class="example">
-                        <div class="row">
-                            <game-tile letter="p"></game-tile>
-                            <game-tile letter="i" evaluation="present" reveal=""></game-tile>
-                            <game-tile letter="l"></game-tile>
-                            <game-tile letter="l"></game-tile>
-                            <game-tile letter="s"></game-tile>
+                        <div id="rowex0" class="row">
+                            <div id="rowex0_0" class="grid" style="background-color: #538d4e">w</div>
+                            <div id="rowex0_1" class="grid" style="background-color: #121213">e</div>
+                            <div id="rowex0_2" class="grid" style="background-color: #121213">a</div>
+                            <div id="rowex0_3" class="grid" style="background-color: #121213">r</div>
+                            <div id="rowex0_4" class="grid" style="background-color: #121213">y</div>
                         </div>
-                        <p>The letter <strong>I</strong> is in the word but in the wrong spot.</p>
+                        <p>The letter <strong>W</strong> is in the word and in the correct spot.</p>
                     </div>
                     <div class="example">
                         <div class="row">
-                            <game-tile letter="v"></game-tile>
-                            <game-tile letter="a"></game-tile>
-                            <game-tile letter="g"></game-tile>
-                            <game-tile letter="u" evaluation="absent" reveal=""></game-tile>
-                            <game-tile letter="e"></game-tile>
+                            <div id="rowex1" class="row">
+                                <div id="rowex1_0" class="grid" style="background-color: #121213">p</div>
+                                <div id="rowex1_1" class="grid" style="background-color: #b59f3b">i</div>
+                                <div id="rowex1_2" class="grid" style="background-color: #121213">l</div>
+                                <div id="rowex1_3" class="grid" style="background-color: #121213">l</div>
+                                <div id="rowex1_4" class="grid" style="background-color: #121213">s</div>
+                            </div>
+                        <p>The letter <strong>I</strong> is in the word but in the wrong spot.</p>
+                    </div>
+                    <div class="example">
+                        <div id="rowex1" class="row">
+                            <div id="rowex1_0" class="grid" style="background-color: #121213">v</div>
+                            <div id="rowex1_1" class="grid" style="background-color: #121213">a</div>
+                            <div id="rowex1_2" class="grid" style="background-color: #121213">g</div>
+                            <div id="rowex1_3" class="grid" style="background-color: gray">u</div>
+                            <div id="rowex1_4" class="grid" style="background-color: #121213">e</div>
                         </div>
                         <p>The letter <strong>U</strong> is not in the word in any spot.</p>
                     </div>
@@ -94,10 +95,11 @@
 {% endblock %}
 
 {% block grid %}
-<center><button class="newGrid">New Grid</button></center>
+<center><button class="key">New Game</button></center>
+<br> 
 <div id="grid-container"></div>
 {% endblock %}
 
 {% block keyboard %}
-<div id="key-container"></div>
+<div id="key-container" style="color:#121213">ff</div>
 {% endblock %}

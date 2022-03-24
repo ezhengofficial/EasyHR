@@ -65,7 +65,7 @@ function createGrid(x) {
     for (var columns = 0; columns < 5; columns++) {
       let tile = document.createElement("div");
       tile.setAttribute("id", "row#" + rows + "tile#" + columns);
-      tile.setAttribute("color", "default");
+      tile.setAttribute("color", "lightgray");
       tile.className = "grid";
       row.appendChild(tile);
     }
@@ -80,6 +80,7 @@ function createKeyboard() {
     let keyboard = document.getElementById("key-container");
     let buttonElement = document.createElement("button");
     buttonElement.setAttribute("id", "key#" + key);
+    buttonElement.setAttribute("class", "key");
 
     buttonElement.textContent = key;
     // console.log(buttonElement.textContent);
@@ -160,18 +161,18 @@ const colorChange = (input) => {
       green = green.concat("", word[i]).toLowerCase();
       //   console.log("green " + green);
       //tile.textContent = "g";
-      tile.setAttribute("style", "background-color: #00FF00");
+      tile.setAttribute("style", "background-color: #538d4e");
 
       // tile.color = "abc"
       //change textContent to datatype and then match data type to word color
     }
     else if (word.includes(input[i])) {
       //tile.textContent = "y";
-      tile.setAttribute("style", "background-color: #FFFF00");
+      tile.setAttribute("style", "background-color: #b59f3b");
     }
     
     else {
-      tile.setAttribute("style", "background-color: #D3D3D3");
+      tile.setAttribute("style", "background-color: gray");
     }
   }
   if (input === word) {
